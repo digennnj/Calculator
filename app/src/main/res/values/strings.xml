@@ -12,8 +12,8 @@
     <string name="eightString">8</string>
     <string name="nineString">9</string>
     <string name="divisorString">" / "</string>
-    <string name="multiplerString">" × "</string>
-    <string name="subtractionString">" − "</string>
+    <string name="multiplerString">" * "</string>
+    <string name="subtractionString">" - "</string>
     <string name="additionString">" + "</string>
     <string name="equalsString">=</string>
 </resources>

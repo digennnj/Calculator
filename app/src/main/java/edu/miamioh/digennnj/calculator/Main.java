@@ -11,7 +11,9 @@ import java.util.List;
 
 public class Main extends AppCompatActivity implements View.OnClickListener {
 
+    // Creates an array of buttons to store each button in the calculator UI
     private List<Button> buttons;
+    // Creates an integer array of each button id that exists in the UI
     private static final int[] BUTTON_IDS = {
             R.id.btnZero,
             R.id.btnOne,
@@ -31,13 +33,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     };
 
     private TextView expression;
-    private InfixExpression infix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initializes the buttons array using the length of the integer array
         buttons = new ArrayList<Button>(BUTTON_IDS.length);
         for(int id : BUTTON_IDS) {
             Button btn = (Button) findViewById(id);
@@ -54,9 +56,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         if(expression.getText().equals("Enter an expression...")) expression.setText("");
 
         if(view.getId() == R.id.btnEquals) {
-
+            InfixExpression infix = new InfixExpression(expression.getText().toString());
+            int answer = infix.evaluate();
+            expression.setText(String.valueOf(answer));
+        } else {
+            expression.append(view.getContentDescription());
         }
-        expression.append(view.getContentDescription());
 
     }
 
