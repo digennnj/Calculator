@@ -16,4 +16,6 @@
     <string name="subtractionString">" - "</string>
     <string name="additionString">" + "</string>
     <string name="equalsString">=</string>
+    <string name="decimalString">.</string>
+    <string name="backspaceString">⇐</string>
 </resources>

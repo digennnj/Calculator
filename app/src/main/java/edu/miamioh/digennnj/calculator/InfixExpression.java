@@ -55,19 +55,6 @@ public class InfixExpression {
             }
         }
         return stack.isEmpty();
-
-//		int balanced = 0;
-//		for(char c : infix.toCharArray()) {
-//			if(balanced < 0) {
-//				return false;
-//			}
-//			if(c == '(') {
-//				balanced++;
-//			} else if(c == ')') {
-//				balanced--;
-//			}
-//		}
-//		return balanced == 0;
     }
 
     /**
@@ -77,20 +64,27 @@ public class InfixExpression {
      */
     private boolean isValid() {
         String checkInfix = infix;
+
+        //Removes any parenthesis or whitespace before checking the expression
         checkInfix = checkInfix.replace("(", "");
         checkInfix = checkInfix.replace(")", "");
         checkInfix = checkInfix.trim();
+
         Scanner expression = new Scanner(checkInfix);
         boolean intCheck = false, operatorCheck = false;
 
+        // Check if the first character is a number (Any parenthesis has been removed)
         if(!(checkInfix.charAt(0) > 47 && checkInfix.charAt(0) < 58)) {
-            expression.close();
-            return false;
+            // If the first character is not a number then check if its a negative sign
+            if(!(checkInfix.charAt(0) == '-')) {
+                expression.close();
+                return false;
+            }
         }
 
         if(validChars() && isBalanced()) {
             while(expression.hasNext()) {
-                if(expression.hasNextInt()) {
+                if(expression.hasNextDouble()) {
                     if(!intCheck) {
                         intCheck = true;
                     } else {
@@ -168,16 +162,19 @@ public class InfixExpression {
     public String getPostfixExpression() {
         //Works how I want, we just need to skip of the part that's in parenthesis that's already been put in post fix.
         ArrayStack<Character> stack = new ArrayStack<>();
+        Scanner infixString = new Scanner(infix);
         String postfix = "";
 
 
         //Run through each char in infix
-        for(char c : infix.toCharArray()) {
-
-            //If char is a number, add it to postfix
-            if((c > 47 && c < 58) || c == ' ') {
+//        for(char c : infix.toCharArray()) {
+        char[] infixCharArray = infix.toCharArray();
+        for(int i = 0; i < infix.length(); i++)  {
+            char c = infixCharArray[i];
+            //If char is a number, whitespace or decimal then add it to postfix
+            if((c > 47 && c < 58) || c == ' ' || c == '.') {
                 postfix += c;
-                //If it is not a number or a whitespace, its an operator
+                //If it is not a number, whitespace or decimal then its an operator
             } else if(c == '('){
                 stack.push(c);
             } else if(c == ')'){
@@ -186,6 +183,15 @@ public class InfixExpression {
                 }
                 stack.pop();
             } else {
+                // Check if the operator is a subtraction sign
+                if(c == '-') {
+                    // If it is a subtraction sign with a number immediately after, then its a negative number.
+                    if(infixCharArray[i+1] > 47 && infixCharArray[i+1] < 58) {
+                        postfix += c;
+                        continue;
+                    }
+                }
+
                 //Check for empty stack, if empty push operator
                 if(stack.isEmpty()) {
                     stack.push(c);
@@ -221,14 +227,16 @@ public class InfixExpression {
      *
      * @return int
      */
-    public int evaluate() {
-        ArrayStack<Integer> stack = new ArrayStack<>();
+    public Double evaluate() {
+        ArrayStack<Double> stack = new ArrayStack<>();
         Scanner postfix = new Scanner(getPostfixExpression());
-        int operandOne, operandTwo, result = 0;
+        double operandOne, operandTwo, result = 0;
         String operator;
         while(postfix.hasNext()) {
-            if(postfix.hasNextInt()) {
-                stack.push(postfix.nextInt());
+//            if(postfix.hasNextInt()) {
+//                stack.push(postfix.nextInt());
+            if(postfix.hasNextDouble()) {
+                stack.push(postfix.nextDouble());
             } else {
                 operandTwo = stack.pop();
                 operandOne = stack.pop();
@@ -289,7 +297,7 @@ public class InfixExpression {
         for(char c : infix.toCharArray()) {
             //A little long but checks if the char is equal to any number, operator, or a whitespace
             //and returns the opposite boolean.
-            if(!((c == ' ') || (c > 47 && c < 58) || (c == '(' ) || (c == ')') || (c == '*') || (c == '/') || (c == '+') || (c == '-') || (c == '^') || (c =='%'))) {
+            if(!((c == ' ') || (c > 47 && c < 58) || (c == '(' ) || (c == ')') || (c == '*') || (c == '/') || (c == '+') || (c == '-') || (c == '^') || (c == '%') || (c == '.'))) {
                 return false;
             }
         }
