@@ -65,7 +65,7 @@
         android:text="@string/decimalString"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnEquals"
+        app:layout_constraintBottom_toTopOf="@+id/btnClear"
         app:layout_constraintEnd_toStartOf="@+id/btnZero"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSeven" />
@@ -77,7 +77,6 @@
         android:layout_height="75dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="124dp"
         android:contentDescription="@string/oneString"
         android:text="@string/oneString"
         android:textSize="30sp"
@@ -85,7 +84,75 @@
         app:layout_constraintBottom_toTopOf="@+id/btnFour"
         app:layout_constraintEnd_toStartOf="@+id/btnTwo"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnTwo" />
+
+    <Button
+        android:id="@+id/btnClosedParenthesis"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="49dp"
+        android:contentDescription="@string/stringClosedParenthesis"
+        android:text="@string/stringClosedParenthesis"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnTwo"
+        app:layout_constraintEnd_toStartOf="@+id/btnNegativeSign"
+        app:layout_constraintStart_toStartOf="@+id/btnTwo"
+        app:layout_constraintTop_toBottomOf="@+id/txtExpression"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnOpenParenthesis"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="49dp"
+        android:contentDescription="@string/stringOpenParenthesis"
+        android:text="@string/stringOpenParenthesis"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnOne"
+        app:layout_constraintEnd_toStartOf="@+id/btnClosedParenthesis"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtExpression" />
+
+    <Button
+        android:id="@+id/btnNegativeSign"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:contentDescription="@string/negativeString"
+        android:text="@string/negativeString"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnThree"
+        app:layout_constraintEnd_toStartOf="@+id/btnModulo"
+        app:layout_constraintStart_toEndOf="@+id/btnClosedParenthesis"
+        app:layout_constraintTop_toBottomOf="@+id/txtExpression" />
+
+    <Button
+        android:id="@+id/btnClear"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/clearString"
+        android:text="@string/clearString"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEquals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDecimal" />
 
     <Button
         android:id="@+id/btnTwo"
@@ -216,7 +283,6 @@
         style="@android:style/Widget.Holo.Button"
         android:layout_width="130dp"
         android:layout_height="75dp"
-        android:layout_marginTop="124dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@android:color/holo_blue_light"
@@ -227,7 +293,42 @@
         app:layout_constraintBottom_toTopOf="@+id/btnMultiplyer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnThree"
+        app:layout_constraintTop_toBottomOf="@+id/btnExponent" />
+
+    <Button
+        android:id="@+id/btnExponent"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/holo_blue_light"
+        android:contentDescription="@string/exponentString"
+        android:text="@string/exponentString"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnDivisor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnModulo"
         app:layout_constraintTop_toBottomOf="@+id/txtExpression" />
+
+    <Button
+        android:id="@+id/btnModulo"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="49dp"
+        android:background="@android:color/holo_blue_light"
+        android:contentDescription="@string/moduloString"
+        android:text="@string/moduloString"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnDivisor"
+        app:layout_constraintEnd_toStartOf="@+id/btnExponent"
+        app:layout_constraintStart_toEndOf="@+id/btnNegativeSign"
+        app:layout_constraintTop_toBottomOf="@+id/txtExpression"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnMultiplyer"
@@ -243,6 +344,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnSubtraction"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSix"
         app:layout_constraintTop_toBottomOf="@+id/btnDivisor" />
 
     <Button
@@ -283,7 +385,7 @@
     <Button
         android:id="@+id/btnEquals"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="400dp"
+        android:layout_width="310dp"
         android:layout_height="75dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -296,6 +398,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnZero" />
 

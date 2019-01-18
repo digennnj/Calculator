@@ -137,7 +137,7 @@ public class InfixExpression {
                 case '+':
                     infix = infix.replace(""+c, " " + c + " ");
                     break;
-                case '-':
+                case '−':
                     infix = infix.replace(""+c, " " + c + " ");
                     break;
                 default: break;
@@ -172,7 +172,7 @@ public class InfixExpression {
         for(int i = 0; i < infix.length(); i++)  {
             char c = infixCharArray[i];
             //If char is a number, whitespace or decimal then add it to postfix
-            if((c > 47 && c < 58) || c == ' ' || c == '.') {
+            if((c > 47 && c < 58) || c == ' ' || c == '.' || c == '-') {
                 postfix += c;
                 //If it is not a number, whitespace or decimal then its an operator
             } else if(c == '('){
@@ -183,15 +183,6 @@ public class InfixExpression {
                 }
                 stack.pop();
             } else {
-                // Check if the operator is a subtraction sign
-                if(c == '-') {
-                    // If it is a subtraction sign with a number immediately after, then its a negative number.
-                    if(infixCharArray[i+1] > 47 && infixCharArray[i+1] < 58) {
-                        postfix += c;
-                        continue;
-                    }
-                }
-
                 //Check for empty stack, if empty push operator
                 if(stack.isEmpty()) {
                     stack.push(c);
@@ -233,8 +224,6 @@ public class InfixExpression {
         double operandOne, operandTwo, result = 0;
         String operator;
         while(postfix.hasNext()) {
-//            if(postfix.hasNextInt()) {
-//                stack.push(postfix.nextInt());
             if(postfix.hasNextDouble()) {
                 stack.push(postfix.nextDouble());
             } else {
@@ -245,7 +234,7 @@ public class InfixExpression {
                     case "+":
                         result = operandOne + operandTwo;
                         break;
-                    case "-":
+                    case "−":
                         result = operandOne - operandTwo;
                         break;
                     case "*":
@@ -277,7 +266,7 @@ public class InfixExpression {
      * @return int
      */
     private int getPriority(char c) {
-        if(c == '+' || c == '-') {
+        if(c == '+' || c == '−') {
             return 1;
         } else if(c == '*' || c == '/' || c == '%') {
             return 2;
@@ -297,7 +286,7 @@ public class InfixExpression {
         for(char c : infix.toCharArray()) {
             //A little long but checks if the char is equal to any number, operator, or a whitespace
             //and returns the opposite boolean.
-            if(!((c == ' ') || (c > 47 && c < 58) || (c == '(' ) || (c == ')') || (c == '*') || (c == '/') || (c == '+') || (c == '-') || (c == '^') || (c == '%') || (c == '.'))) {
+            if(!((c == ' ') || (c > 47 && c < 58) || (c == '(' ) || (c == ')') || (c == '*') || (c == '/') || (c == '+') || (c == '-') || (c == '^') || (c == '%') || (c == '.') || (c == '−'))) {
                 return false;
             }
         }

@@ -13,9 +13,15 @@
     <string name="nineString">9</string>
     <string name="divisorString">" / "</string>
     <string name="multiplerString">" * "</string>
-    <string name="subtractionString">" - "</string>
+    <string name="subtractionString">" − "</string>
     <string name="additionString">" + "</string>
     <string name="equalsString">=</string>
     <string name="decimalString">.</string>
     <string name="backspaceString">⇐</string>
+    <string name="moduloString">%</string>
+    <string name="exponentString">^</string>
+    <string name="clearString">C</string>
+    <string name="stringClosedParenthesis">)</string>
+    <string name="negativeString">-</string>
+    <string name="stringOpenParenthesis">(</string>
 </resources>
