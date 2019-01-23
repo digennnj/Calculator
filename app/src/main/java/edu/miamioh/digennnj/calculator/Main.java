@@ -62,57 +62,51 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         try {
             if (expression.getText().equals("Enter an expression...")) expression.setText("");
 
             if (view.getId() == R.id.btnEquals) {
                 InfixExpression infix = new InfixExpression(expression.getText().toString());
                 double answer = 0;
-
-
                 answer = infix.evaluate();
-
-
                 expression.setText(String.valueOf(answer));
-
             } else if (view.getId() == R.id.btnBackspace) {
+                String current = expression.getText().toString();
                 // Remove the last character in the expression
-                CharSequence current = expression.getText();
-                expression.setText(current.subSequence(0, current.length() - 1));
+                expression.setText(current.substring(0, current.length() - 1));
             } else if (view.getId() == R.id.btnClear) {
                 expression.setText("");
+            } else if (view.getId() == R.id.btnOpenParenthesis) {
+                String current = expression.getText().toString();
+                // If the last char is a number then append a mulitplication sign before the open parenthesis
+                if (isNumber(current.charAt(current.length() - 1))) {
+                    expression.append(view.getContentDescription());
+                } else {
+                    // Appends the content description of the button which holds the proper string to append to the expression
+                    // according to the button that was pressed.
+                    expression.append(view.getContentDescription());
+                }
             } else {
                 expression.append(view.getContentDescription());
             }
-        } catch (Exception e) {
+
+        } catch(Exception e){
             println("\n This is the error\n" + e.getMessage() + "\n\n");
         }
 
-    }
-
-    private String parenthesisHelper(String current) {
-
-        current = current.trim();
-        // Check if the last character in the sequence is an operator
-        if (isOperator(current.charAt(current.length() - 1))) {
-            // If the last character is an operator then add a parenthesis
-            return current + " (";
         }
-
-        for (int i = current.length() - 1; i >= 0; i--) {
-            if(current.charAt(i) == '(') {
-                return current + ")";
-            }
-        }
-
-        return current + " (";
-    }
 
     private boolean isOperator(char c) {
 
         if(c == '−' || c == '*' || c == '+' || c == '/' || c == '^' || c == '%') {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isNumber(char c) {
+        if(c > 47 && c < 58) {
             return true;
         }
         return false;

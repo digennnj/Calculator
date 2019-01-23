@@ -11,10 +11,10 @@
     <string name="sevenString">7</string>
     <string name="eightString">8</string>
     <string name="nineString">9</string>
-    <string name="divisorString">" / "</string>
-    <string name="multiplerString">" * "</string>
-    <string name="subtractionString">" − "</string>
-    <string name="additionString">" + "</string>
+    <string name="divisorString">/</string>
+    <string name="multiplerString">*</string>
+    <string name="subtractionString">−</string>
+    <string name="additionString">+</string>
     <string name="equalsString">=</string>
     <string name="decimalString">.</string>
     <string name="backspaceString">⇐</string>

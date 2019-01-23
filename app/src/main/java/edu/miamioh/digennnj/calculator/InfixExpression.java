@@ -167,7 +167,6 @@ public class InfixExpression {
 
 
         //Run through each char in infix
-//        for(char c : infix.toCharArray()) {
         char[] infixCharArray = infix.toCharArray();
         for(int i = 0; i < infix.length(); i++)  {
             char c = infixCharArray[i];
